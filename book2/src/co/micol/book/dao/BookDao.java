@@ -13,7 +13,7 @@ public class BookDao extends DAO {
 	private PreparedStatement psmt;
 	private ResultSet rs;
 
-	public ArrayList<BookVo> bookSelectList() { // 전체 도서 리스트
+	public ArrayList<BookVo> bookSelectList() { // �쟾泥� �룄�꽌 由ъ뒪�듃
 		ArrayList<BookVo> list = new ArrayList<BookVo>();
 		BookVo vo = new BookVo();
 
@@ -21,7 +21,7 @@ public class BookDao extends DAO {
 
 		try {
 			psmt = conn.prepareStatement(sql);
-			psmt.executeQuery();
+			rs = psmt.executeQuery();
 			while (rs.next()) {
 				vo = new BookVo();
 				vo.setBookname(rs.getString("bookname"));
@@ -41,12 +41,12 @@ public class BookDao extends DAO {
 		return list;
 	}
 
-	public BookVo bookSelect(BookVo vo) { // 특정 도서의 현황
+	public BookVo bookSelect(BookVo vo) { // �듅�젙 �룄�꽌�쓽 �쁽�솴
 		String sql = "SELECT * FROM BOOK WHERE BOOKCODE = ?";
 		try {
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, vo.getBookcode());
-			psmt.executeQuery();
+			rs = psmt.executeQuery();
 			if (rs.next()) {
 				vo = new BookVo();
 				vo.setBookname(rs.getString("bookname"));
@@ -63,7 +63,7 @@ public class BookDao extends DAO {
 		return vo;
 	}
 
-	public int bookInsert(BookVo vo) { // 희망도서 신청? 등록?
+	public int bookInsert(BookVo vo) { // �씗留앸룄�꽌 �떊泥�? �벑濡�?
 		int n = 0;
 		String sql = "INSERT INTO BOOK (BOOKCODE, BOOKNAME) VALUES (?, ?)";
 		try {
@@ -81,7 +81,7 @@ public class BookDao extends DAO {
 		return n;
 	}
 
-	public int bookUpdate1(BookVo vo) { // 특정 도서 대출했을 때 현재수량
+	public int bookUpdate1(BookVo vo) { // �듅�젙 �룄�꽌 ��異쒗뻽�쓣 �븣 �쁽�옱�닔�웾
 		int n = 0;
 		String sql = "UPDATE BOOK SET BCOUNT = BCOUNT - 1 WHERE BOOKCODE = ?";
 		
@@ -97,7 +97,7 @@ public class BookDao extends DAO {
 		return n;
 	}
 
-	public int bookUpdate2(BookVo vo) { // 특정 도서 반납했을 때 현재수량
+	public int bookUpdate2(BookVo vo) { // �듅�젙 �룄�꽌 諛섎궔�뻽�쓣 �븣 �쁽�옱�닔�웾
 		int n = 0;
 		String sql = "UPDATE BOOK SET BCOUNT = BCOUNT + 1 WHERE BOOKCODE = ?";
 
@@ -113,7 +113,7 @@ public class BookDao extends DAO {
 		return n;
 	}
 
-	public int bookDelete(BookVo vo) { // 해당 도서 폐기
+	public int bookDelete(BookVo vo) { // �빐�떦 �룄�꽌 �룓湲�
 		int n = 0;
 		String sql = "DELETE FROM BOOK WHERE BOOKCODE = ?";
 		try {

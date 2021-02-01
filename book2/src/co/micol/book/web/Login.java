@@ -16,7 +16,7 @@ public class Login implements Command {
 		MemberVo vo = new MemberVo();
 		vo.setMemberid(request.getParameter("memberid"));
 		vo.setMemberpassword(request.getParameter("memberpassword"));
-
+		
 		
 		vo = dao.login(vo);
 		
@@ -24,9 +24,9 @@ public class Login implements Command {
 		
 		
 		if(vo.getMembermauth() != null) {
-			HttpSession session= request.getSession(); //세션객체 호출
-			session.setAttribute("memberid", vo.getMemberid()); //세션에 아이디
-			session.setAttribute("membermauth", vo.getMembermauth()); //세션에 권한을 담는다.
+			HttpSession session= request.getSession(); 
+			session.setAttribute("memberid", vo.getMemberid()); 
+			session.setAttribute("membermauth", vo.getMembermauth()); 
 			request.setAttribute("vo", vo);
 			viewPage = "member/loginSuccess";
 		}else {

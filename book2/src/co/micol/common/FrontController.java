@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import co.micol.book.web.BookReturn;
 import co.micol.book.web.BookReturnForm;
 import co.micol.book.web.IdCheck;
 import co.micol.book.web.Login;
@@ -36,8 +37,9 @@ public class FrontController extends HttpServlet {
 		map.put("/memberJoinForm.do", new MemberJoinForm()); // 회원가입 폼 이동
 		map.put("/memberJoin.do", new MemberJoin()); // 회원가입
 		map.put("/idCheck.do", new IdCheck()); // 아이디 중복체크
-		map.put("/bookReturnForm.do", new BookReturnForm()); // 도서 반납
-		map.put("/logout.do", new Logout());
+		map.put("/bookReturnForm.do", new BookReturnForm()); // 도서 반납 목록
+		map.put("/bookReturn.do", new BookReturn());// 도서 반납
+		map.put("/logout.do", new Logout()); // 로그 아웃
 	}
 
 	protected void service(HttpServletRequest request, HttpServletResponse response)

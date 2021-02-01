@@ -1,4 +1,5 @@
 eclipse.preferences.version=1
+encoding//src/co/micol/book/dao/BookDao.java=UTF-8
 encoding//src/co/micol/book/dao/BookRentalDao.java=UTF-8
 encoding//src/co/micol/book/dao/MemberDao.java=UTF-8
 encoding//src/co/micol/common/FrontController.java=UTF-8

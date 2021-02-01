@@ -15,14 +15,15 @@ public class BookRentalDao extends DAO {
 
 	public ArrayList<BookRentalVo> rentalSelectList() { // �룄�꽌 ��異�/諛섎궔 �쟾泥� �궡�뿭
 		ArrayList<BookRentalVo> list = new ArrayList<BookRentalVo>();
-		BookRentalVo vo = new BookRentalVo();
+		BookRentalVo vo;
 
 		String sql = "SELECT * FROM BOOKRENTAL";
 
 		try {
 			psmt = conn.prepareStatement(sql);
-			psmt.executeQuery();
+			rs = psmt.executeQuery();
 			while (rs.next()) {
+				vo = new BookRentalVo();
 				vo.setRentaldate(rs.getDate("rentaldate"));
 				vo.setBookcode(rs.getString("bookcode"));
 				vo.setMemberid(rs.getString("memberid"));
@@ -40,13 +41,15 @@ public class BookRentalDao extends DAO {
 		return list;
 	}
 
-	public BookRentalVo rentalSelect(BookRentalVo vo) { // �듅�젙 �궗�슜�옄�쓽 �룄�꽌 ��異�/諛섎궔 �쁽�솴
+	public BookRentalVo rentalSelect(BookRentalVo vo) {
 		String sql = "SELECT * FROM BOOKRENTAL WHERE MEMBERID = ?";
 		try {
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, vo.getMemberid());
-			psmt.executeQuery();
+			rs = psmt.executeQuery();
+			
 			if (rs.next()) {
+				vo = new BookRentalVo();
 				vo.setRentaldate(rs.getDate("rentaldate"));
 				vo.setBookcode(rs.getString("bookcode"));
 				vo.setMemberid(rs.getString("memberid"));

@@ -7,22 +7,17 @@ import co.micol.book.dao.BookRentalDao;
 import co.micol.book.vo.BookRentalVo;
 import co.micol.common.Command;
 
-public class BookReturnForm implements Command {
+public class BookReturn implements Command {
 
 	@Override
 	public String excute(HttpServletRequest request, HttpServletResponse response) {
-		// ¹Ý³³ ³»¿ª Æû ÀÌµ¿
+		// µµ¼­ ¹Ý³³ÇÏ±â
 		BookRentalDao dao = new BookRentalDao();
 		BookRentalVo vo = new BookRentalVo();
 		
-		vo.setMemberid(request.getParameter("memberid"));
 		
-		vo = dao.rentalSelect(vo);
-		request.setAttribute("vo", vo);
 		
-		String viewPage = "book/bookReturnForm";
-		
-		return viewPage;
+		return "book/bookReturn";
 	}
 
 }

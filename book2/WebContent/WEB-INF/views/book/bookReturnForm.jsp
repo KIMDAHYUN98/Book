@@ -17,13 +17,16 @@
 				<th>대여일자</th>
 				<th>반납일자</th>
 				<th>반납</th>
+			</tr>		
+			<tr>
+				<td>${vo.bookcode }</td>
+				<td>${vo.memberid }</td>
+				<td>${vo.rentaldate }</td>
+				<td>${vo.returndate }</td>
+				<td>
+					<button type="button" onclick="location.href='bookReturn.do'">반납</button>
+				</td>
 			</tr>
-				
-				
-				<c:when test="${list.memberid eq 'U' }">
-					<tr>
-					</tr>
-				</c:when>
 		</table>
 	</div>
 </body>
