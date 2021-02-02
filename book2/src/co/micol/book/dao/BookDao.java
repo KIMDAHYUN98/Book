@@ -13,11 +13,11 @@ public class BookDao extends DAO {
 	private PreparedStatement psmt;
 	private ResultSet rs;
 
-	public ArrayList<BookVo> bookSelectList() { // �쟾泥� �룄�꽌 由ъ뒪�듃
+	public ArrayList<BookVo> bookSelectList() {
 		ArrayList<BookVo> list = new ArrayList<BookVo>();
 		BookVo vo = new BookVo();
 
-		String sql = "SELECT * FROM BOOK";
+		String sql = "SELECT * FROM BOOK order by 1";
 
 		try {
 			psmt = conn.prepareStatement(sql);
@@ -41,7 +41,7 @@ public class BookDao extends DAO {
 		return list;
 	}
 
-	public BookVo bookSelect(BookVo vo) { // �듅�젙 �룄�꽌�쓽 �쁽�솴
+	public BookVo bookSelect(BookVo vo) {
 		String sql = "SELECT * FROM BOOK WHERE BOOKCODE = ?";
 		try {
 			psmt = conn.prepareStatement(sql);
@@ -63,7 +63,7 @@ public class BookDao extends DAO {
 		return vo;
 	}
 
-	public int bookInsert(BookVo vo) { // �씗留앸룄�꽌 �떊泥�? �벑濡�?
+	public int bookInsert(BookVo vo) { 
 		int n = 0;
 		String sql = "INSERT INTO BOOK (BOOKCODE, BOOKNAME) VALUES (?, ?)";
 		try {
@@ -81,7 +81,7 @@ public class BookDao extends DAO {
 		return n;
 	}
 
-	public int bookUpdate1(BookVo vo) { // �듅�젙 �룄�꽌 ��異쒗뻽�쓣 �븣 �쁽�옱�닔�웾
+	public int bookUpdate1(BookVo vo) {
 		int n = 0;
 		String sql = "UPDATE BOOK SET BCOUNT = BCOUNT - 1 WHERE BOOKCODE = ?";
 		
@@ -97,7 +97,7 @@ public class BookDao extends DAO {
 		return n;
 	}
 
-	public int bookUpdate2(BookVo vo) { // �듅�젙 �룄�꽌 諛섎궔�뻽�쓣 �븣 �쁽�옱�닔�웾
+	public int bookUpdate2(BookVo vo) { 
 		int n = 0;
 		String sql = "UPDATE BOOK SET BCOUNT = BCOUNT + 1 WHERE BOOKCODE = ?";
 
@@ -112,8 +112,25 @@ public class BookDao extends DAO {
 		}
 		return n;
 	}
+	
+	public int bookUpdate(BookVo vo) { 
+		int n = 0;
+		String sql = "UPDATE BOOK SET bookname = ? WHERE BOOKCODE = ?";
 
-	public int bookDelete(BookVo vo) { // �빐�떦 �룄�꽌 �룓湲�
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, vo.getBookname());
+			psmt.setString(2, vo.getBookcode());
+			n = psmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+		return n;
+	}
+
+	public int bookDelete(BookVo vo) { 
 		int n = 0;
 		String sql = "DELETE FROM BOOK WHERE BOOKCODE = ?";
 		try {

@@ -41,8 +41,6 @@
 </head>
 <body>
 	<div align="center">
-		<form id="frm" name="frm" action="bookReturnForm.do" method="post">
-			<input type="hidden" id="memberid" name="memberid" value="${memberid }">${memberid }
 		<nav id="topMenu">
 			<ul>
 				<li><a class="menuLink" href="main.do">Home</a></li>
@@ -50,19 +48,29 @@
 				<c:if test="${memberid eq null }">
 					<li><a class="menuLink" href="loginForm.do">Login</a></li>
 					<li>|</li>
-					<li><a class="menuLink" href="memberJoinForm.do">회원가입</a></li>
-					<li>|</li>
-				</c:if>
-				<li><a class="menuLink" href="#">대여</a></li>
+				    <li><a class="menuLink" href="memberJoinForm.do">회원가입</a></li>
+				    <li><a class="menuLink" href="loginForm.do">도서대여</a></li>
 				<li>|</li>
-				<li><a class="menuLink" href="bookReturnForm.do">반납</a></li>
-				<c:if test="${memberid ne null }">
-					<li>|</li>
-					<li><a class="menuLink" href="logout.do">logout</a></li>
+				<li><a class="menuLink" href="loginForm.do">도서반납</a></li>
+				</c:if>
+				<c:if test="${membermauth == 'USER' }">
+				<li><a class="menuLink" href="bookList.do">도서대여</a></li>
+				<li>|</li>
+				<li><a class="menuLink" href="bookReturnForm.do">도서반납</a></li>
+				</c:if>
+				<c:if test="${membermauth == 'SYS' }">
+				<li><a class="menuLink" href="bookInsertForm.do">도서등록</a></li>
+				<li>|</li>
+				<li><a class="menuLink" href="bookList.do">대여관리</a></li>
+				<li>|</li>
+				<li><a class="menuLink" href="memberSet.do">회원관리</a></li>
+				</c:if>
+				<c:if test="${memberid ne null }" >
+				<li>|</li>
+				<li><a class="menuLink" href="logout.do">Logout</a></li>
 				</c:if>
 			</ul>
 		</nav>
-		</form>
 	</div>
 </body>
 </html>

@@ -1,5 +1,7 @@
 package co.micol.book.web;
 
+import java.util.ArrayList;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -12,17 +14,15 @@ public class BookReturnForm implements Command {
 	@Override
 	public String excute(HttpServletRequest request, HttpServletResponse response) {
 		// ¹Ý³³ ³»¿ª Æû ÀÌµ¿
+		
 		BookRentalDao dao = new BookRentalDao();
-		BookRentalVo vo = new BookRentalVo();
+		ArrayList<BookRentalVo> list = new ArrayList<BookRentalVo>();
 		
-		vo.setMemberid(request.getParameter("memberid"));
+		list = dao.rentalSelectList();
 		
-		vo = dao.rentalSelect(vo);
-		request.setAttribute("vo", vo);
+		request.setAttribute("list", list);
 		
-		String viewPage = "book/bookReturnForm";
-		
-		return viewPage;
+		return "book/bookReturnForm";
 	}
 
 }

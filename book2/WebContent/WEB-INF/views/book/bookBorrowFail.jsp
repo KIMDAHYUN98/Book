@@ -6,7 +6,10 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
+<jsp:include page="../common/menu.jsp" />
 <body>
-dddd
+<div align="center">
+		<h1>대여에 실패했습니다.</h1>
+		</div>
 </body>
 </html>

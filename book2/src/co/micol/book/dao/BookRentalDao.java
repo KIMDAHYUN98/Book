@@ -13,7 +13,7 @@ public class BookRentalDao extends DAO {
 	private PreparedStatement psmt;
 	private ResultSet rs;
 
-	public ArrayList<BookRentalVo> rentalSelectList() { // �룄�꽌 ��異�/諛섎궔 �쟾泥� �궡�뿭
+	public ArrayList<BookRentalVo> rentalSelectList() {
 		ArrayList<BookRentalVo> list = new ArrayList<BookRentalVo>();
 		BookRentalVo vo;
 
@@ -22,6 +22,7 @@ public class BookRentalDao extends DAO {
 		try {
 			psmt = conn.prepareStatement(sql);
 			rs = psmt.executeQuery();
+
 			while (rs.next()) {
 				vo = new BookRentalVo();
 				vo.setRentaldate(rs.getDate("rentaldate"));
@@ -63,14 +64,13 @@ public class BookRentalDao extends DAO {
 		return vo;
 	}
 	
-	public int rentalInsert(BookRentalVo vo) { // �룄�꽌 ��異� �븯湲�
+	public int rentalInsert(BookRentalVo vo) {
 		int n = 0;
-		String sql = "INSERT INTO BOOKRENTAL(BOOKCODE, MEMBERID, RETURNDATE) VALUES(?, ?, ?)";
+		String sql = "INSERT INTO BOOKRENTAL(BOOKCODE, MEMBERID) VALUES(?, ?)";
 		try {
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, vo.getBookcode());
 			psmt.setString(2, vo.getMemberid());
-			psmt.setString(3, vo.getReturndate());
 			
 			n = psmt.executeUpdate();
 			
@@ -82,13 +82,12 @@ public class BookRentalDao extends DAO {
 		return n;
 	}
 	
-	public int rentalUpdate(BookRentalVo vo) { // 諛섎궔�씪�옄 �닔�젙
+	public int rentalUpdate(BookRentalVo vo) {
 		int n = 0;
-		String sql ="UPDATE BOOKRENTAL SET RETURNDATE = ? WHERE MEMBERID = ?";
+		String sql ="UPDATE BOOKRENTAL SET RETURNDATE = sysdate WHERE bookcode = ?";
 		try {
 			psmt = conn.prepareStatement(sql);
-			psmt.setString(1, vo.getReturndate());
-			psmt.setString(2, vo.getMemberid());
+			psmt.setString(1, vo.getBookcode());
 			
 			n = psmt.executeUpdate();
 			
@@ -97,6 +96,22 @@ public class BookRentalDao extends DAO {
 		} finally {
 			close();
 		}
+		return n;
+	}
+	
+	public int rentalDelete(BookRentalVo vo) {
+		int n = 0;
+		String sql = "delete from bookrental where bookcode = ?";
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, vo.getBookcode());
+			n = psmt.executeUpdate();
+		} catch(SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+		
 		return n;
 	}
 	

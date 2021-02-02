@@ -9,28 +9,27 @@ import co.micol.book.vo.BookRentalVo;
 import co.micol.book.vo.BookVo;
 import co.micol.common.Command;
 
-public class BookReturn implements Command {
+public class bookDelete implements Command {
 
 	@Override
 	public String excute(HttpServletRequest request, HttpServletResponse response) {
-		// 도서 반납하기
+		// 도서 삭제하기
 		
 		BookDao dao = new BookDao();
 		BookVo vo = new BookVo();
 		BookRentalDao rdao = new BookRentalDao();
-		BookRentalVo bvo = new BookRentalVo();
+		BookRentalVo rvo = new BookRentalVo();
 		
 		vo.setBookcode(request.getParameter("bookcode"));
-		bvo.setBookcode(request.getParameter("bookcode"));
+		rvo.setBookcode(request.getParameter("bookcode"));
 		
-		int n = dao.bookUpdate2(vo);
-		n = rdao.rentalUpdate(bvo);
+		int n = rdao.rentalDelete(rvo);
+		n = dao.bookDelete(vo);
 		
-		
-		String viewPage = "bookReturnForm.do";
+		String viewPage = "bookList.do";
 		
 		if(n == 0) {
-			viewPage ="book/bookReturnFail";
+			viewPage = "book/bookDeleteFail";
 		}
 		
 		return viewPage;

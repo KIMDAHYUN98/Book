@@ -81,7 +81,6 @@ public class MemberDao extends DAO {
 	public int delete(MemberVo vo) {
 		int n = 0;
 		String sql = "DELETE FROM MEMBER WHERE MEMBERID = ?";
-		//�뿬湲곗뿉 �궘�젣 �옉�뾽�쓣 �벖�떎.
 		try {
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, vo.getMemberid());
@@ -125,15 +124,5 @@ public class MemberDao extends DAO {
 		return bool;
 	}
 	
-	public ArrayList<BookRentalVo> returnBook(BookRentalVo vo) {
-		
-		ArrayList<BookRentalVo> list = new ArrayList<BookRentalVo>();
-		MemberVo mvo;
-		String sql = "select * from bookrental where memberid = ?";
-		
-		
-		return null;
-		
-	}
 	
 }
