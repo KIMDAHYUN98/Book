@@ -16,6 +16,7 @@ import co.micol.book.web.BookEditForm;
 import co.micol.book.web.BookInsert;
 import co.micol.book.web.BookInsertForm;
 import co.micol.book.web.BookList;
+import co.micol.book.web.BookListSys;
 import co.micol.book.web.BookReturn;
 import co.micol.book.web.BookReturnForm;
 import co.micol.book.web.BookView;
@@ -55,7 +56,8 @@ public class FrontController extends HttpServlet {
 		map.put("/bookReturnForm.do", new BookReturnForm()); // 도서 반납 목록
 		map.put("/bookReturn.do", new BookReturn());// 도서 반납
 		map.put("/logout.do", new Logout()); // 로그 아웃
-		map.put("/bookList.do", new BookList()); // 대여할 도서 목록
+		map.put("/bookList.do", new BookList()); //도서 목록(사용자 전용)
+		map.put("/bookListSys.do", new BookListSys()); //도서 목록(관리자 전용)
 		map.put("/borrowBook.do", new BorrowBook()); // 도서 대여
 		map.put("/bookInsertForm.do", new BookInsertForm()); // 도서 등록 화면
 		map.put("/bookInsert.do", new BookInsert()); // 도서 등록

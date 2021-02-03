@@ -42,7 +42,7 @@
 		</table><br/>
 		<button type="submit">등록</button> &nbsp;&nbsp;&nbsp;
 		<button type="reset">취소</button> &nbsp;&nbsp;&nbsp;
-		<button type="button" onclick="location.href='bookList.do'">목록</button>
+		<button type="button" onclick="location.href='bookListSys.do'">목록</button>
 		</form>
 	</div>
 </body>

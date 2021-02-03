@@ -13,7 +13,7 @@ public class BookList implements Command {
 
 	@Override
 	public String excute(HttpServletRequest request, HttpServletResponse response) {
-		// 도서대여 폼 돌려주기(여기다가 memberid 값이 추가된 메소드 불러오기)
+		// 도서대여 폼 돌려주기
 		
 				BookDao dao = new BookDao();
 				ArrayList<BookVo> list = new ArrayList<BookVo>();

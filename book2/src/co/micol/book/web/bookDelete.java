@@ -26,7 +26,7 @@ public class bookDelete implements Command {
 		int n = rdao.rentalDelete(rvo);
 		n = dao.bookDelete(vo);
 		
-		String viewPage = "bookList.do";
+		String viewPage = "bookListSys.do";
 		
 		if(n == 0) {
 			viewPage = "book/bookDeleteFail";

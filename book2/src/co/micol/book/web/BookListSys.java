@@ -1,5 +1,7 @@
 package co.micol.book.web;
 
+import java.util.ArrayList;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -7,26 +9,18 @@ import co.micol.book.dao.BookDao;
 import co.micol.book.vo.BookVo;
 import co.micol.common.Command;
 
-public class BookEdit implements Command {
+public class BookListSys implements Command {
 
 	@Override
 	public String excute(HttpServletRequest request, HttpServletResponse response) {
-		// 도서 수정 하기
-		
+		// 도서 목록 이동(관리자)
+
 		BookDao dao = new BookDao();
-		BookVo vo = new BookVo();
+		ArrayList<BookVo> list = new ArrayList<BookVo>();
+		list = dao.bookSelectList();
 		
-		vo.setBookcode(request.getParameter("bookcode"));
-		vo.setBookname(request.getParameter("bookname"));
-		
-		int n = dao.bookUpdate(vo);
-		String viewPage = "bookListSys.do";
-		
-		if(n == 0) {
-			viewPage = "book/bookEditFail";
-		}
-		
-		return viewPage;
+		request.setAttribute("list", list); 
+		return "book/bookListSys";
 	}
 
 }

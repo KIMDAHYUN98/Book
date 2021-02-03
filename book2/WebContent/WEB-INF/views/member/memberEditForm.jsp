@@ -23,15 +23,18 @@
 					<td width="100" align="center">${vo.memberid }
 					<input type="hidden" id="memberid" name="memberid" value="${vo.memberid }" readonly="readonly"></td> 
 					<th width="100">이름</th>
-					<td width="140" align="center">${vo.membername } </td>
+					<td width="140" align="center">
+					<input type="text" id="membername" name="membername" value="${vo.membername }"></td>
 					<th width="100">비밀번호</th>
-					<td width="120" align="center">${vo.memberpassword }</td>
+					<td width="120" align="center">
+					<input type="text" id="memberpassword" name="memberpassword" value="${vo.memberpassword }"></td>
 					<th width="100">전화번호</th>
 					<td width="200" align="center">${vo.membertel }</td>
 					<th width="100">주소</th>
 					<td width="100" align="center">${vo.memberaddress }</td>
 					<th width="100">권한</th>
-					<td width="100" align="center">${vo.membermauth }</td>
+					<td width="100" align="center">
+					<input type="text" id="membermauth" name="membermauth" value="${vo.membermauth }"></td></td>
 				</tr>
 			</table>
 				<div><br />

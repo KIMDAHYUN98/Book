@@ -59,7 +59,7 @@
 				<li><a class="menuLink" href="bookReturnForm.do">도서반납</a></li>
 				</c:if>
 				<c:if test="${membermauth == 'SYS' }">
-				<li><a class="menuLink" href="bookList.do">도서관리</a></li>
+				<li><a class="menuLink" href="bookListSys.do">도서관리</a></li>
 				<li>|</li>
 				<li><a class="menuLink" href="borrowSetForm.do">대여관리</a></li>
 				<li>|</li>

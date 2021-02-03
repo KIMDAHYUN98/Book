@@ -45,7 +45,7 @@
 		<div>
 			<button type="button" onclick="editAlert()">수정</button>&nbsp;&nbsp;&nbsp;
 			<button type="button" onclick="deleteAlert()">삭제</button>&nbsp;&nbsp;&nbsp;
-			<button type="button" onclick="location.href='bookList.do'">목록</button>
+			<button type="button" onclick="location.href='bookListSys.do'">목록</button>
 		</div>
 		</form>
 	</div>

@@ -21,7 +21,7 @@ public class BookInsert implements Command {
 		
 		int n = dao.bookInsert(vo);
 		
-		String viewPage = "bookList.do";
+		String viewPage = "bookListSys.do";
 		
 		if(n == 0) {
 			
