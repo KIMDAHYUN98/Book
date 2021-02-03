@@ -17,7 +17,7 @@ public class BookDao extends DAO {
 		ArrayList<BookVo> list = new ArrayList<BookVo>();
 		BookVo vo = new BookVo();
 
-		String sql = "SELECT * FROM BOOK order by 1";
+		String sql = "select * from book order by 1";
 
 		try {
 			psmt = conn.prepareStatement(sql);
@@ -63,7 +63,7 @@ public class BookDao extends DAO {
 		return vo;
 	}
 
-	public int bookInsert(BookVo vo) { 
+	public int bookInsert(BookVo vo) {
 		int n = 0;
 		String sql = "INSERT INTO BOOK (BOOKCODE, BOOKNAME) VALUES (?, ?)";
 		try {
@@ -84,11 +84,18 @@ public class BookDao extends DAO {
 	public int bookUpdate1(BookVo vo) {
 		int n = 0;
 		String sql = "UPDATE BOOK SET BCOUNT = BCOUNT - 1 WHERE BOOKCODE = ?";
-		
+
 		try {
+			if(vo.getBcount() > 0 && vo.getBcount() < 6) {
+			System.out.println("현재 수량 : " + vo.getBcount());
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, vo.getBookcode());
-			n = psmt.executeUpdate();
+				n = psmt.executeUpdate();
+			} else {
+				n = 0;
+			}
+			System.out.println("if문을 거친 현재 n의 수 : " + n);
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -97,14 +104,20 @@ public class BookDao extends DAO {
 		return n;
 	}
 
-	public int bookUpdate2(BookVo vo) { 
+	public int bookUpdate2(BookVo vo) {
 		int n = 0;
 		String sql = "UPDATE BOOK SET BCOUNT = BCOUNT + 1 WHERE BOOKCODE = ?";
 
 		try {
-			psmt = conn.prepareStatement(sql);
-			psmt.setString(1, vo.getBookcode());
-			n = psmt.executeUpdate();
+			if (vo.getBcount() > 0 && vo.getBcount() < 6) {
+				System.out.println("현재 수량 : " + vo.getBcount());
+				psmt = conn.prepareStatement(sql);
+				psmt.setString(1, vo.getBookcode());
+				n = psmt.executeUpdate();
+			} else {
+				n = 0;
+			}
+			System.out.println("if문을 거친 현재 n의 수 : " + n);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -112,8 +125,8 @@ public class BookDao extends DAO {
 		}
 		return n;
 	}
-	
-	public int bookUpdate(BookVo vo) { 
+
+	public int bookUpdate(BookVo vo) {
 		int n = 0;
 		String sql = "UPDATE BOOK SET bookname = ? WHERE BOOKCODE = ?";
 
@@ -130,7 +143,7 @@ public class BookDao extends DAO {
 		return n;
 	}
 
-	public int bookDelete(BookVo vo) { 
+	public int bookDelete(BookVo vo) {
 		int n = 0;
 		String sql = "DELETE FROM BOOK WHERE BOOKCODE = ?";
 		try {

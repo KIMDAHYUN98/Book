@@ -5,6 +5,7 @@ public class BookVo {
 	private String bookname;
 	private int quantity;
 	private int bcount;
+	private String memberid;
 	
 	public String getBookcode() {
 		return bookcode;
@@ -29,6 +30,12 @@ public class BookVo {
 	}
 	public void setBcount(int bcount) {
 		this.bcount = bcount;
+	}
+	public String getMemberid() {
+		return memberid;
+	}
+	public void setMemberid(String memberid) {
+		this.memberid = memberid;
 	}
 	
     

@@ -59,11 +59,11 @@
 				<li><a class="menuLink" href="bookReturnForm.do">도서반납</a></li>
 				</c:if>
 				<c:if test="${membermauth == 'SYS' }">
-				<li><a class="menuLink" href="bookInsertForm.do">도서등록</a></li>
+				<li><a class="menuLink" href="bookList.do">도서관리</a></li>
 				<li>|</li>
-				<li><a class="menuLink" href="bookList.do">대여관리</a></li>
+				<li><a class="menuLink" href="borrowSetForm.do">대여관리</a></li>
 				<li>|</li>
-				<li><a class="menuLink" href="memberSet.do">회원관리</a></li>
+				<li><a class="menuLink" href="memberSetForm.do">회원관리</a></li>
 				</c:if>
 				<c:if test="${memberid ne null }" >
 				<li>|</li>

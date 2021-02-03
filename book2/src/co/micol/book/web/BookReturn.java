@@ -18,19 +18,26 @@ public class BookReturn implements Command {
 		BookDao dao = new BookDao();
 		BookVo vo = new BookVo();
 		BookRentalDao rdao = new BookRentalDao();
-		BookRentalVo bvo = new BookRentalVo();
+		BookRentalVo rvo = new BookRentalVo();
 		
 		vo.setBookcode(request.getParameter("bookcode"));
-		bvo.setBookcode(request.getParameter("bookcode"));
+		vo.setBcount(Integer.parseInt(request.getParameter("bcount")));
+		System.out.println("현재 수량" + request.getParameter("bcount"));
+		rvo.setBookcode(request.getParameter("bookcode"));
 		
 		int n = dao.bookUpdate2(vo);
-		n = rdao.rentalUpdate(bvo);
+		System.out.println("반납 : " + n);
 		
-		
-		String viewPage = "bookReturnForm.do";
+		if(n != 0) {
+			n = rdao.rentalUpdate(rvo);
+		}
+		System.out.println("현재 수량 및 반납 : " + n);
+		String viewPage;
 		
 		if(n == 0) {
 			viewPage ="book/bookReturnFail";
+		} else {
+			viewPage = "bookReturnForm.do";
 		}
 		
 		return viewPage;

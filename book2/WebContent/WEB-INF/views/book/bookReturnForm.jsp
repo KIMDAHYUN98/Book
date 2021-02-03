@@ -23,15 +23,18 @@
 			<c:forEach var="vo" items="${list }">
 				<c:if test="${vo.memberid eq memberid}">
 					<tr>
-						<td >
-							<input type="text" id="bookcode" name="bookcode" value="${vo.bookcode }" readonly="readonly" size="5">
-						</td>
+						<td >${vo.bookcode }</td>
 						<td>${vo.memberid }</td>
 						<td>${vo.rentaldate }</td>
 						<td>${vo.returndate }</td>
-						<td>
-							<button type="button" onclick="location.href='bookReturn.do?bookcode='+${vo.bookcode }">반납</button>
+						<td width="10">
+							<form action="bookReturn.do" method="post">
+									<input type="hidden" id="bookcode" name="bookcode" value="${vo.bookcode }">
+									<input type="hidden" id="bcount" name="bcount" value="${vo.bcount }">
+									<input type="submit" value="반납">
+							</form>
 						</td>
+						
 					</tr>
 				</c:if>
 			</c:forEach>		

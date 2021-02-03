@@ -16,17 +16,20 @@ function formSubmit(str) {
 	frm.bookcode.value=str;
 	frm.submit();
 }
+
 </script>
 
 <!-- Page content -->
 <div class="w3-content" style="max-width: 2000px; margin-top: 46px"
 	align="center">
-	<h1>대여할 수 있는 도서 리스트</h1>
+	<h1>도서 리스트</h1>
+	
 	<div>
 		<form id="frm" name="frm" action="bookView.do" method="post">
 				<input type="hidden" id="bookcode" name="bookcode">
 		</form>
 	</div>
+
 	<table border="1">
 		<c:if test="${membermauth == 'USER' }">
 			<tr>
@@ -52,13 +55,21 @@ function formSubmit(str) {
 				</tr>
 			</c:when>
 			<c:when test="${not empty list && membermauth == 'USER'}">
+				
 				<c:forEach var="vo" items="${list }">
-					<tr class="row">
+					<tr>
 						<td align="center">${vo.bookcode }</td>
 						<td>&nbsp;${vo.bookname }</td>
 						<td align="center">${vo.quantity }</td>
 						<td align="center">${vo.bcount }</td>
-						<td><button type="button" onclick="location.href='borrowBook.do?bookcode='+${vo.bookcode }">대여</button></td>
+						<td width="10">
+							<form action="borrowBook.do" method="post">
+									<input type="hidden" id="bookcode" name="bookcode" value="${vo.bookcode }">
+									<input type="hidden" id="bcount" name="bcount" value="${vo.bcount }">
+									<input type="hidden" id="memberid" name="memberid" value="${memberid }">
+									<input type="submit" value="대여">
+							</form>
+						</td>
 					</tr>
 				</c:forEach>
 			</c:when>
@@ -71,9 +82,10 @@ function formSubmit(str) {
 						<td align="center">${vo.bcount }</td>
 					</tr>
 				</c:forEach>
+	<button type="button" onclick="location.href='bookInsertForm.do'">등록</button>
 			</c:when>
 		</c:choose>
-	</table>
+	</table><br/>
 </div>
 </head>
 </body>

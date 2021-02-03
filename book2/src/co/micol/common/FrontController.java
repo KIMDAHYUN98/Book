@@ -20,12 +20,19 @@ import co.micol.book.web.BookReturn;
 import co.micol.book.web.BookReturnForm;
 import co.micol.book.web.BookView;
 import co.micol.book.web.BorrowBook;
+import co.micol.book.web.BorrowSetForm;
 import co.micol.book.web.IdCheck;
 import co.micol.book.web.Login;
 import co.micol.book.web.LoginForm;
 import co.micol.book.web.Logout;
+import co.micol.book.web.MemberDelete;
+import co.micol.book.web.MemberEdit;
+import co.micol.book.web.MemberEditForm;
+import co.micol.book.web.MemberInsert;
+import co.micol.book.web.MemberInsertForm;
 import co.micol.book.web.MemberJoin;
 import co.micol.book.web.MemberJoinForm;
+import co.micol.book.web.MemberSetForm;
 import co.micol.book.web.bookDelete;
 
 @WebServlet("/FrontController")
@@ -56,6 +63,13 @@ public class FrontController extends HttpServlet {
 		map.put("/bookEditForm.do", new BookEditForm()); // 도서 수정 폼
 		map.put("/bookEdit.do", new BookEdit()); // 도서 수정하기
 		map.put("/bookDelete.do", new bookDelete()); // 도서 삭제하기
+		map.put("/memberSetForm.do", new MemberSetForm()); // 회원관리 폼 여기부터 생성하기!!
+		map.put("/memberDelete.do", new MemberDelete()); //유저 삭제
+		map.put("/memberEditForm.do", new MemberEditForm()); //유저 수정 폼
+		map.put("/memberEdit.do", new MemberEdit()); //유저 수정
+		map.put("/memberInsertForm.do", new MemberInsertForm()); //유저 등록 폼
+		map.put("/memberInsert.do", new MemberInsert()); //유저 등록
+		map.put("/borrowSetForm.do", new BorrowSetForm()); //대여 리스트 전체 보기 폼
 	}
 
 	protected void service(HttpServletRequest request, HttpServletResponse response)

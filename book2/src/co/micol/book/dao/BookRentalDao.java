@@ -17,7 +17,7 @@ public class BookRentalDao extends DAO {
 		ArrayList<BookRentalVo> list = new ArrayList<BookRentalVo>();
 		BookRentalVo vo;
 
-		String sql = "SELECT * FROM BOOKRENTAL";
+		String sql = "select * from t_bookreturn order by 1";
 
 		try {
 			psmt = conn.prepareStatement(sql);
@@ -29,6 +29,7 @@ public class BookRentalDao extends DAO {
 				vo.setBookcode(rs.getString("bookcode"));
 				vo.setMemberid(rs.getString("memberid"));
 				vo.setReturndate(rs.getString("returndate"));
+				vo.setBcount(rs.getInt("bcount"));
 
 				list.add(vo);
 
@@ -66,11 +67,12 @@ public class BookRentalDao extends DAO {
 	
 	public int rentalInsert(BookRentalVo vo) {
 		int n = 0;
-		String sql = "INSERT INTO BOOKRENTAL(BOOKCODE, MEMBERID) VALUES(?, ?)";
+		String sql = "INSERT INTO t_bookreturn(BOOKCODE, MEMBERID, RENTALDATE, BCOUNT) VALUES(?, ?, sysdate, ?)";
 		try {
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, vo.getBookcode());
 			psmt.setString(2, vo.getMemberid());
+			psmt.setInt(3, vo.getBcount());
 			
 			n = psmt.executeUpdate();
 			
@@ -84,7 +86,7 @@ public class BookRentalDao extends DAO {
 	
 	public int rentalUpdate(BookRentalVo vo) {
 		int n = 0;
-		String sql ="UPDATE BOOKRENTAL SET RETURNDATE = sysdate WHERE bookcode = ?";
+		String sql ="UPDATE t_bookreturn SET RETURNDATE = sysdate WHERE bookcode = ?";
 		try {
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, vo.getBookcode());
